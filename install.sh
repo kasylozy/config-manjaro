@@ -182,5 +182,6 @@ fi
 echo ""
 echo ""
 echo "Redémarrez l'ordinateur pour terminer la configuration !"
+echo "Utilisez votre nouvelle installation de développement web"
 exit 0
 
