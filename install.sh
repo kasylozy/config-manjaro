@@ -123,7 +123,12 @@ installPacman curl \
   uwsgi-plugin-php7 \
   npm \
   ruby \
-  neofetch
+  neofetch \
+  libvoikko \
+  hspell \
+  nuspell \
+  hunspell \
+  aspell
 
 installYay vscodium-bin \
   sublime-text-4 \
