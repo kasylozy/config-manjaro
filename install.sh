@@ -179,6 +179,23 @@ if [ ! -f /usr/bin/docker ]; then
   fi
 fi
 
+for php_ini in `sudo find /etc -type f -name "php.ini"` ; do
+    path_file=${php_ini##/etc/}
+    path=${path_file%/php.ini}
+    sudo chmod o+w $php_ini
+    
+    sudo sed -i "s/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/error_reporting = E_ALL/" $php_ini
+    sudo sed -i "s/display_errors = Off/display_errors = On/" $php_ini
+    sudo sed -i "s/display_startup_errors = Off/display_startup_errors = On/" $php_ini
+    sudo sed -i "s/log_errors = On/log_errors = Off/" $php_ini
+    sudo sed -i "s/post_max_size = 8M/post_max_size = 8G/" $php_ini
+    sudo sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 8G/" $php_ini
+    sudo sed -i "s/;extension=/extension=/" $php_ini
+    sudo sed -i "s/;zend_extension=/zend_extension=/" $php_ini
+    
+    sudo chmod o-w $php_ini
+done
+
 echo ""
 echo ""
 echo "Redémarrez l'ordinateur pour terminer la configuration !"
